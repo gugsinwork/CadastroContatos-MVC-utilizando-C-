@@ -1,0 +1,22 @@
+﻿@model ContatoModel
+
+<form asp-controller="Contato" asp-action="Criar" method="post">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">E-mail</label>
+        <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputFone" class="form-label">Celular</label>
+        <input type="text" asp-for="Celular" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
+        @Html.ValidationMessageFor(x => x.Celular)
+    </div>
+
+    <button type="submit" class="btn btn-success">Adicionar</button>
+    <a role="button" asp-controller="Contato" asp-action="Index" class="btn btn-secondary">Voltar</a>
+</form>

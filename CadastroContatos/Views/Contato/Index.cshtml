@@ -1,0 +1,68 @@
+﻿@model List<ContatoModel>
+<div class="text-center">
+
+    @if(TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+    @if (TempData["MensagemEditar"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemEditar"]
+        </div>
+    }
+    @if(TempData["MensagemApagar"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemApagar"]
+        </div>
+    }
+
+    <br />
+
+
+    <h1 class="display-4">Bem-vindo a página de cadastro!</h1>
+    <table class="table">
+        <thead>
+            <tr id="tittle-table">
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Celular</th>
+                <th scope="col"> <a role="button" asp-controller="Contato" asp-action="Criar" id="button-adicionar" class="btn btn-primary">Adicionar Contato</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach(ContatoModel contato in Model)
+                {
+                    <tr>
+                        <th scope="row">@contato.Id</th>
+                        <td>@contato.Nome</td>
+                        <td>@contato.Email</td>
+                        <td>@contato.Celular</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a role="button" asp-controller="Contato" asp-route-id="@contato.Id" asp-action="Editar" class="btn btn-primary">Editar</a>
+                                <a role="button" asp-controller="Contato" asp-route-id="@contato.Id" asp-action="ApagarConfirmacao" class="btn btn-danger">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
